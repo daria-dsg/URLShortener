@@ -2,6 +2,19 @@ class ShortenedUrl < ApplicationRecord
   validates :long_url, presence: true
   validates :short_url, uniqueness: true
 
+  has_many(
+    :visits,
+    class_name: 'Visit',
+    primary_key: :id,
+    foreign_key: :shortenedurl_id
+  )
+
+  has_many(
+    :visitors,
+    through: :visits,
+    source: :user
+  )
+
   belongs_to(
     :submitter,
     class_name: 'User',
