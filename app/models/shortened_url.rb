@@ -45,11 +45,21 @@ class ShortenedUrl < ApplicationRecord
   end
 
   def num_clicks
-    self.visits.count
+    self.visits
+        .count
   end
 
   def num_uniques
-    self.distinct_visitors.count
+    self.distinct_visitors
+        .count
+  end
+
+  def num_recent_uniques
+    self.visits
+        .select(:user_id)
+        .where("created_at > ?", 10.minutes.ago)
+        .distinct
+        .count
   end
 
 end
