@@ -19,4 +19,9 @@ class ShortenedUrl < ApplicationRecord
 
     "https://shorturl.at/" + short_url
   end
+
+  def self.create!(long_url, user)
+    self.new(long_url: long_url, short_url: random_code, user_id: user.id).save!
+  end
+
 end
