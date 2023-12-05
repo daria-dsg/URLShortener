@@ -15,6 +15,14 @@ class ShortenedUrl < ApplicationRecord
     source: :user
   )
 
+  has_many(
+    :distinct_visitors,
+    -> { distinct },
+    through: :visits,
+    source: :user
+  )
+
+
   belongs_to(
     :submitter,
     class_name: 'User',
