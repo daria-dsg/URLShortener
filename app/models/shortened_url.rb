@@ -49,7 +49,7 @@ class ShortenedUrl < ApplicationRecord
   end
 
   def num_uniques
-    visits.select(:user_id).distinct.count
+    self.distinct_visitors.count
   end
 
 end
