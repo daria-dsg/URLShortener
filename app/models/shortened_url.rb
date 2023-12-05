@@ -36,4 +36,12 @@ class ShortenedUrl < ApplicationRecord
     self.new(long_url: long_url, short_url: random_code, user_id: user.id).save!
   end
 
+  def num_clicks
+    self.visits.count
+  end
+
+  def num_uniques
+    visits.select(:user_id).distinct.count
+  end
+
 end
