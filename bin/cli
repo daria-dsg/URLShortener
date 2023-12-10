@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+class CLI
+  def login_user
+    puts 'Input your email:'
+    @current_user = User.find_by(email: gets.chomp)
+
+    if @current_user.nil?
+      raise 'That user doen\'t exist'
+    end
+
+    nil
+  end
+end
+
+CLI.new.login_user
