@@ -6,7 +6,7 @@ class CLI
     @current_user = User.find_by(email: gets.chomp)
 
     if @current_user.nil?
-      raise 'That user doen\'t exist'
+      raise 'That user doesn\'t exist'
     end
 
     nil
@@ -20,8 +20,22 @@ class CLI
     puts "Short url is: #{url.short_url}"
     puts "Goodbye"
   end
+
+  def visit_url
+    puts "Type in the shortened URL"
+    input = gets.chomp
+    url = ShortenedUrl.find_by(short_url: input)
+
+    if url.nil?
+      raise 'That url doesn\t exist'
+    end
+
+    Visit.record_visit!(url, @current_user)
+    puts "Launching #{url.long_url} ..."
+    Launchy.open(url.long_url)
+  end
 end
 
 @cli = CLI.new
 @cli.login_user
-@cli.create_url!
+@cli.visit_url
