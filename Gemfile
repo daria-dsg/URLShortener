@@ -46,6 +46,7 @@ gem "bootsnap", require: false
 
 gem 'pry-rails'
 gem 'byebug'
+gem 'launchy'
 
 
 group :development, :test do
