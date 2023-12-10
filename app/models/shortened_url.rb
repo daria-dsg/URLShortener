@@ -22,6 +22,18 @@ class ShortenedUrl < ApplicationRecord
     source: :user
   )
 
+  has_many(
+    :taggings,
+    class_name: 'Tagging',
+    primary_key: :id,
+    foreign_key: :url_id
+  )
+
+  has_many(
+    :tag_topics,
+    through: :taggings,
+    source: :tag_topic
+  )
 
   belongs_to(
     :submitter,
