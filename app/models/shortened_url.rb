@@ -40,8 +40,12 @@ class ShortenedUrl < ApplicationRecord
     "https://shorturl.at/" + short_url
   end
 
-  def self.create!(long_url, user)
-    self.new(long_url: long_url, short_url: random_code, user_id: user.id).save!
+  def self.create_for_user_and_long_url!(long_url, user)
+    self.create!(
+      long_url: long_url,
+      short_url: random_code, 
+      user_id: user.id
+    )
   end
 
   def num_clicks
