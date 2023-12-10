@@ -2,7 +2,7 @@
 
 class CLI
   def login_user
-    puts 'Input your email:'
+    puts "Input your email:"
     @current_user = User.find_by(email: gets.chomp)
 
     if @current_user.nil?
@@ -11,6 +11,17 @@ class CLI
 
     nil
   end
+
+  def create_url!
+    puts 'Type in your long url'
+    long_url = gets.chomp
+    url = ShortenedUrl.create_for_user_and_long_url!(long_url, @current_user)
+
+    puts "Short url is: #{url.short_url}"
+    puts "Goodbye"
+  end
 end
 
-CLI.new.login_user
+@cli = CLI.new
+@cli.login_user
+@cli.create_url!
