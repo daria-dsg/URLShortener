@@ -18,7 +18,6 @@ class CLI
     url = ShortenedUrl.create_for_user_and_long_url!(long_url, @current_user)
 
     puts "Short url is: #{url.short_url}"
-    puts "Goodbye"
   end
 
   def visit_url
@@ -34,8 +33,26 @@ class CLI
     puts "Launching #{url.long_url} ..."
     Launchy.open(url.long_url)
   end
+
+  def run
+    login_user
+    puts "What do you want to do?"
+    puts "0. Create shortened URL"
+    puts "1. Visit shortened URL"
+
+    command = gets.chomp
+
+    case command
+    when "0"
+      create_url!
+    when "1"
+      visit_url
+    else
+      raise "Unknow command"
+    end
+
+    puts "Goodbye"
+  end
 end
 
-@cli = CLI.new
-@cli.login_user
-@cli.visit_url
+CLI.new.run
