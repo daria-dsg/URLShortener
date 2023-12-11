@@ -1,7 +1,7 @@
 class ShortenedUrl < ApplicationRecord
   validates :long_url, presence: true
   validates :short_url, uniqueness: true
-  validate :no_spamming
+  validate :no_spamming, :non_premium_max
 
   has_many(
     :visits,
@@ -86,6 +86,19 @@ class ShortenedUrl < ApplicationRecord
 
     if last_count > 5
       errors.add[:maximum, "of 5 urls can be submitted in 5 minutes"]
+    end
+  end
+
+  def non_premium_max
+    return if User.find_by_id(self.user_id).premium
+
+    num_of_urls = 
+      ShortenedUrl
+        .where(user_id: user_id)
+        .count
+
+    if num_of_urls >= 5
+      errors.add[:Only, "premium users can submit 5 and more urls"] 
     end
   end
 end
