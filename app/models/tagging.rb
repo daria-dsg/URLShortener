@@ -1,6 +1,6 @@
 class Tagging < ApplicationRecord
   validates :tag_id, presence: true
-  validates :url_id, presence: true
+  validates :url_id, presence: true, uniqueness: { scope: :tag_id }
 
   belongs_to(
     :tag_topic,
