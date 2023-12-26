@@ -1,6 +1,6 @@
 # URL Shortener
 
-Command line that take an arbitrarily-long URL and shorten it for the user. 
+Command line tool that take an arbitrarily-long URL and shorten it for the user. 
 
 #### Learning Goals
 * Be able to create a new Rails project
