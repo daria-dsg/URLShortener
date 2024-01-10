@@ -1,24 +1,11 @@
-# README
+# URL Shortener
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Command line tool that take an arbitrarily-long URL and shorten it for the user. 
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#### Learning Goals
+* Be able to create a new Rails project
+* Be able to navigate a Rails project using the keyboard
+* Be able to change the database using migrations
+* Be able to write both database constraints and model-level validations
+* Be able to write associations
+* Understand the purpose of adding an index to columns in our database
